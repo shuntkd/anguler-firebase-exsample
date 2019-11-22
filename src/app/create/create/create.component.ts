@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -16,7 +16,12 @@ export class CreateComponent implements OnInit {
       Validators.required,
       Validators.pattern(/male|female/)
     ]]
-  })
+  });
+
+  get nameControl() {
+    return this.form.get('name') as FormControl;
+  }
+
   constructor(
     private fb: FormBuilder
   ) { }
