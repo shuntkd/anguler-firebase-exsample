@@ -12,7 +12,10 @@ export class CreateComponent implements OnInit {
   config: SwiperConfigInterface = {
     loop: true,
     navigation: true,
-    pagination: true,
+    pagination: {
+      el: '.pager',
+      clickable:true,
+    },
     centeredSlides: true,
     slidesPerView: 3,
   }
@@ -42,5 +45,6 @@ export class CreateComponent implements OnInit {
 
   submit() {
     console.log(this.form.value);
+    console.log(this.selectedPetId);
   }
 }
