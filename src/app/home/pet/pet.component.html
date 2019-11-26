@@ -1,0 +1,10 @@
+<div class="pet">
+  <figure class="pet__avattar">
+   <img [src]="pet.avaterURL" alt="">
+  </figure>
+  <div class="pet__bod">
+    <p class="pet__name">{{pet.name}}</p>
+    <mat-progress-bar mode="determinate" [value] = getExpPercentage() ></mat-progress-bar>
+    <p class="pet__exp">{{pet.exp}}/{{maxEXP}}</p>
+  </div>
+</div>
