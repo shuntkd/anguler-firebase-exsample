@@ -11,28 +11,32 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AuthService {
 
   afUser$: Observable<User> = this.afAuth.user;
+  uid: string;
 
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
     private snackbar: MatSnackBar
   ) {
-    this.afUser$.subscribe(user => console.log(user));
-  }
-
-  login(){
-    this.afAuth.auth.signInWithPopup(
-      new auth.GithubAuthProvider()
-    ).then(()=>{
-      this.snackbar.open('ようこそGitpetへ',null,{
-        duration: 2000
-      });
+    this.afUser$.subscribe(user => {
+      this.uid = user && user.uid;
     });
   }
 
-  logout(){
+  login() {
+    this.afAuth.auth.signInWithPopup(
+      new auth.GithubAuthProvider()
+    ).then(() => {
+      this.snackbar.open('ようこそGitpetへ', null, {
+        duration: 2000
+      });
+    });
+    this.router.navigateByUrl('/create');
+  }
+
+  logout() {
     this.afAuth.auth.signOut().then(() => {
-      this.snackbar.open('ログアウトしました',null,{
+      this.snackbar.open('ログアウトしました', null, {
         duration: 2000
       });
     });
